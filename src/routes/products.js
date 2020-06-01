@@ -1,7 +1,7 @@
 const app = require('express').Router();
 const mysql = require('../database/mysql-connection');
 
-app.get('/products/:lang/new', async (req, res) => {
+app.get('/products/:lang/', async (req, res) => {
     const { lang } = req.params;
     // get all records
     const sql = `SELECT * FROM product_${lang}`;
@@ -57,21 +57,6 @@ app.patch('/product/:lang/update/:id', async (req, res) => {
 
     const sql = `UPDATE product_${lang} SET title='${title}', description='${description}' ,price='${price}', mainImg='${mainImg}', categoryId='${categoryId}', keywords='${keywords}' WHERE productId=${id};`
     mysql.query(sql, [title, description, price, mainImg, categoryId, keywords], (err, rows, fields) => {
-        if (err) {
-            console.log(err)
-            return;
-        }
-        console.log(rows);
-        res.json('patched');
-    });
-});
-
-app.patch('/product/:lang/update-checkout/:id', async (req, res) => {
-    const { checkout } = req.body;
-    const { id, lang } = req.params;
-
-    const sql = `UPDATE product_${lang} SET checkout='${checkout}' WHERE productId=${id};`
-    mysql.query(sql, [checkout], (err, rows, fields) => {
         if (err) {
             console.log(err)
             return;
