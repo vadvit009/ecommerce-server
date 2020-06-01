@@ -50,6 +50,21 @@ app.patch('/product/:lang/update/:id', async (req, res) => {
     });
 });
 
+app.patch('/product/:lang/update/:id', async (req, res) => {
+    const { checkout } = req.body;
+    const { id, lang } = req.params;
+
+    const sql = `UPDATE product_${lang} SET checkout='${checkout}' WHERE productId=${id};`
+    mysql.query(sql, [checkout], (err, rows, fields) => {
+        if (err) {
+            console.log(err)
+            return;
+        }
+        console.log(rows);
+        res.json('patched');
+    });
+});
+
 app.patch('/product/:lang/restore/:id', async (req, res) => {
     const { id,lang } = req.params;
     // restore user
