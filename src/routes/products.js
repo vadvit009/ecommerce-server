@@ -35,7 +35,7 @@ app.post('/product/:lang/create', (req, res) => {
     });
 });
 
-// patch checkout
+// SET checkout
 app.patch('/product/:lang/update/:id', async (req, res) => {
     const { checkout } = req.body;
     const { id, lang } = req.params;
