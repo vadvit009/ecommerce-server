@@ -1,7 +1,7 @@
 const app = require('express').Router();
 const mysql = require('../database/mysql-connection');
 
-app.get('/products/:lang/', async (req, res) => {
+app.get('/products/:lang/new', async (req, res) => {
     const { lang } = req.params;
     // get all records
     const sql = `SELECT * FROM product_${lang}`;
