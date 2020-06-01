@@ -50,7 +50,7 @@ app.patch('/product/:lang/update/:id', async (req, res) => {
     });
 });
 
-app.patch('/product/:lang/update/:id', async (req, res) => {
+app.patch('/product/:lang/update-checkout/:id', async (req, res) => {
     const { checkout } = req.body;
     const { id, lang } = req.params;
 
